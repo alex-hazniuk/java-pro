@@ -1,5 +1,7 @@
 package com.company.lesson4.participants_barriers.barriers;
 
+import com.company.lesson4.participants_barriers.participants.Participant;
+
 public abstract class Barrier {
     private String barrierName;
     private int parameter;
@@ -14,10 +16,8 @@ public abstract class Barrier {
     }
 
     public int getParameter() {
-        return parameter;
+        return Math.max(parameter, 0);
     }
 
-    public boolean overcome(int maxValue) {
-        return parameter <= maxValue;
-    }
+    public abstract boolean overcome(Participant participant);
 }

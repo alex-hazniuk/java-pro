@@ -16,10 +16,29 @@ public class Main {
         Participant[] participants = {cat, human, robot};
 
         Barrier runningTrack = new RunningTrack("Running track", 50);
-        Barrier wall = new Wall("Wall", 3);
+        Barrier wall = new Wall("Wall", 2);
         Barrier[] barriers = {runningTrack, wall};
 
-        Interaction interaction = new Interaction();
-        interaction.interact(participants, barriers);
+        interact(participants, barriers);
+    }
+
+    public static void interact(Participant[] participants, Barrier[] barriers) {
+        if (participants != null && barriers != null
+                && participants.length > 0 && barriers.length > 0) {
+            for (Participant participant : participants) {
+                if (participant == null) {
+                    continue;
+                }
+                for (Barrier barrier : barriers) {
+                    if (barrier == null) {
+                        continue;
+                    }
+                    if (!barrier.overcome(participant))
+                        break;
+                }
+            }
+        } else {
+            System.out.println("Action impossible! No participants or barriers");
+        }
     }
 }

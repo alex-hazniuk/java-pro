@@ -11,41 +11,19 @@ public abstract class Participant {
         this.maxJumpHeight = maxJumpHeight;
     }
 
+    public String getName() {
+        return name;
+    }
+
     public int getMaxRunDistance() {
-        return maxRunDistance;
+        return Math.max(maxRunDistance, 0);
     }
 
     public int getMaxJumpHeight() {
-        return maxJumpHeight;
+        return Math.max(maxJumpHeight, 0);
     }
 
-    public void run(String barrierName, int parameter, boolean overcome) {
-        if (parameter >= 0 && maxRunDistance >= 0) {
-            if (overcome) {
-                System.out.printf("Participant %s overcame %s on a distance %d\n",
-                        name, barrierName, parameter);
-            } else {
-                System.out.printf("Participant %s did`t overcame %s on a distance %d." +
-                                " Overcame %d\n",
-                        name, barrierName, parameter, maxRunDistance);
-            }
-        } else {
-            System.out.printf("Distance for %s can't be negative. Change parameter!\n", name);
-        }
-    }
+    public abstract void run(String barrierName, int parameter);
 
-    public void jump(String barrierName, int parameter, boolean overcome) {
-        if (parameter >= 0 && maxJumpHeight >= 0) {
-            if (overcome) {
-                System.out.printf("Participant %s overcame %s with a height %d\n",
-                        name, barrierName, parameter);
-            } else {
-                System.out.printf("Participant %s did`t overcame %s with a height %d." +
-                                " Overcame %d\n",
-                        name, barrierName, parameter, maxJumpHeight);
-            }
-        } else {
-            System.out.printf("Height for %s can't be negative. Change parameter!\n", name);
-        }
-    }
+    public abstract void jump(String barrierName, int parameter);
 }
